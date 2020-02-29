@@ -12,6 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.sql.rowset.serial.SerialBlob;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,15 +29,29 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
+    @NotNull
+    @Digits(integer = 15, fraction = 0)
     private int phoneNumber;
+    @Size(min = 5, max = 200)
+    @NotNull
     private String address;
+    @NotNull
+    @Size(min = 6, max = 100)
+    @Pattern(regexp = "@\"^([0-9a-zA-Z](?>[-.\\w]*[0-9a-zA-Z])*@(?>[0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$\",")
+    //https://stackoverflow.com/questions/13087755/can-anyone-tell-me-why-this-c-sharp-email-validation-regular-expression-regex
     private String email;
+    @Size(min = 1, max = 100)
+    @NotNull
     private String username;
+    @Size(min = 8, max = 100)
+    @NotNull
     private String password;
     private SerialBlob profilePicture;//https://stackoverflow.com/questions/29208007/what-is-the-data-type-for-images-in-java
+    @Past
+    @NotNull
     private Date lastOnline;
     //TODO: relational mapping
-    
+
     public Long getUserID() {
         return userID;
     }
@@ -163,5 +182,10 @@ public class User implements Serializable {
     public void setLastOnline(Date lastOnline) {
         this.lastOnline = lastOnline;
     }
-    
+
+    /**
+     * @return the birthDate
+     */
+   
+
 }
