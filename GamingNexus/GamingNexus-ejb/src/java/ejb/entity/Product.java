@@ -39,12 +39,12 @@ public class Product implements Serializable {
     private String computerRequirements;
     @NotNull
     @Digits(integer = 1000000000, fraction = 2)
-    private float price;
+    private double price;
     @Digits(integer = 1, fraction = 2)
     @Min(0)
     @Max(5)
     @NotNull
-    private float averageRating;
+    private double averageRating;
     @NotNull
     private List<String> tags;
     //TODO: Add relational mapping
@@ -52,7 +52,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String name, String description, String computerRequirements, float price, float averageRating, List<String> tags) {
+    public Product(String name, String description, String computerRequirements, double price, double averageRating, List<String> tags) {
         this();
         this.name = name;
         this.description = description;
@@ -140,28 +140,28 @@ public class Product implements Serializable {
     /**
      * @return the price
      */
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
     /**
      * @return the averageRating
      */
-    public float getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 
     /**
      * @param averageRating the averageRating to set
      */
-    public void setAverageRating(float averageRating) {
+    public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
 

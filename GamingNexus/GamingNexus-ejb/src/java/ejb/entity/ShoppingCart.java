@@ -28,21 +28,21 @@ public class ShoppingCart implements Serializable {
     @NotNull
     @Min(0)
     @Digits(integer = 1000000000, fraction = 2)
-    private float subTotalPayable;
+    private double subTotalPayable;
     @NotNull
     @Min(0)
     @Digits(integer = 1000000000, fraction = 2)
-    private float discount;
+    private double discount;
     @NotNull
     @Min(0)
     @Digits(integer = 1000000000, fraction = 2)
-    private float netTotalPayable;
+    private double netTotalPayable;
     //TODO: Add relational mapping
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(float subTotalPayable, float discount, float netTotalPayable) {
+    public ShoppingCart(double subTotalPayable, double discount, double netTotalPayable) {
         this();
         this.subTotalPayable = subTotalPayable;
         this.discount = discount;
@@ -85,42 +85,42 @@ public class ShoppingCart implements Serializable {
     /**
      * @return the subTotalPayable
      */
-    public float getSubTotalPayable() {
+    public double getSubTotalPayable() {
         return subTotalPayable;
     }
 
     /**
      * @param subTotalPayable the subTotalPayable to set
      */
-    public void setSubTotalPayable(float subTotalPayable) {
+    public void setSubTotalPayable(double subTotalPayable) {
         this.subTotalPayable = subTotalPayable;
     }
 
     /**
      * @return the discount
      */
-    public float getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
     /**
      * @param discount the discount to set
      */
-    public void setDiscount(float discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
     /**
      * @return the netTotalPayable
      */
-    public float getNetTotalPayable() {
+    public double getNetTotalPayable() {
         return netTotalPayable;
     }
 
     /**
      * @param netTotalPayable the netTotalPayable to set
      */
-    public void setNetTotalPayable(float netTotalPayable) {
+    public void setNetTotalPayable(double netTotalPayable) {
         this.netTotalPayable = netTotalPayable;
     }
 

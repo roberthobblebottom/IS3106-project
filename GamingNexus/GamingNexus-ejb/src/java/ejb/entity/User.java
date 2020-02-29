@@ -40,6 +40,9 @@ public class User implements Serializable {
     @Pattern(regexp = "@\"^([0-9a-zA-Z](?>[-.\\w]*[0-9a-zA-Z])*@(?>[0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$\",")
     //https://stackoverflow.com/questions/13087755/can-anyone-tell-me-why-this-c-sharp-email-validation-regular-expression-regex
     private String email;
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String country;
     @Size(min = 1, max = 100)
     @NotNull
     private String username;
@@ -55,11 +58,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int phoneNumber, String address, String email, String username, String password, SerialBlob profilePicture, Date lastOnline) {
+    public User(int phoneNumber, String address, String email, String country, String username, String password, SerialBlob profilePicture, Date lastOnline) {
         this();
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
+        this.country = country;
         this.username = username;
         this.password = password;
         this.profilePicture = profilePicture;
@@ -195,6 +199,20 @@ public class User implements Serializable {
      */
     public void setLastOnline(Date lastOnline) {
         this.lastOnline = lastOnline;
+    }
+
+    /**
+     * @return the country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     /**
