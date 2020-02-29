@@ -42,6 +42,7 @@ public class Message implements Serializable {
     @NotNull
     private boolean isNewPost = false;
     //TODO: Add relational mapping
+    //TODO: Make sure that the Message entity is NOT linked to both Chat entity and Forum Entity
 
     public Message() {
         
