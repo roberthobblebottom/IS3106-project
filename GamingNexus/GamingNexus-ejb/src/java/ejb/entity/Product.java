@@ -49,6 +49,19 @@ public class Product implements Serializable {
     private List<String> tags;
     //TODO: Add relational mapping
 
+    public Product() {
+    }
+
+    public Product(String name, String description, String computerRequirements, float price, float averageRating, List<String> tags) {
+        this();
+        this.name = name;
+        this.description = description;
+        this.computerRequirements = computerRequirements;
+        this.price = price;
+        this.averageRating = averageRating;
+        this.tags = tags;
+    }
+
     public Long getProductID() {
         return productID;
     }

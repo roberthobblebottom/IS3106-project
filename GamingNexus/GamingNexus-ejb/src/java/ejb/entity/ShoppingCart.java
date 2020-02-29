@@ -39,6 +39,16 @@ public class ShoppingCart implements Serializable {
     private float netTotalPayable;
     //TODO: Add relational mapping
 
+    public ShoppingCart() {
+    }
+
+    public ShoppingCart(float subTotalPayable, float discount, float netTotalPayable) {
+        this();
+        this.subTotalPayable = subTotalPayable;
+        this.discount = discount;
+        this.netTotalPayable = netTotalPayable;
+    }
+
     public Long getShoppingCartID() {
         return shoppingCartID;
     }

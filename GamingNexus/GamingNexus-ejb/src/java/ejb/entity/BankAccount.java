@@ -40,6 +40,17 @@ public class BankAccount implements Serializable {
     private int backCode;
     //TODO: Add relational mapping
 
+    public BankAccount() {
+    }
+
+    public BankAccount(String accountNumber, String expiryDate, String nameOnCard, int backCode) {
+        this();
+        this.accountNumber = accountNumber;
+        this.expiryDate = expiryDate;
+        this.nameOnCard = nameOnCard;
+        this.backCode = backCode;
+    }
+
     public Long getBankAccountID() {
         return BankAccountID;
     }

@@ -52,6 +52,20 @@ public class User implements Serializable {
     private Date lastOnline;
     //TODO: relational mapping
 
+    public User() {
+    }
+
+    public User(int phoneNumber, String address, String email, String username, String password, SerialBlob profilePicture, Date lastOnline) {
+        this();
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.profilePicture = profilePicture;
+        this.lastOnline = lastOnline;
+    }
+
     public Long getUserID() {
         return userID;
     }
@@ -186,6 +200,4 @@ public class User implements Serializable {
     /**
      * @return the birthDate
      */
-   
-
 }

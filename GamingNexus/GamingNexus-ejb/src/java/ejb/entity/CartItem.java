@@ -24,6 +24,9 @@ public class CartItem implements Serializable {
     private Long cartItemID;
     //TODO: Add relational mapping
 
+    public CartItem() {
+    }
+
     public Long getCartItemID() {
         return cartItemID;
     }

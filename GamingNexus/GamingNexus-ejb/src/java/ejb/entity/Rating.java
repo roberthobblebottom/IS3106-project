@@ -42,6 +42,16 @@ public class Rating implements Serializable {
     private Date dateOfReview;
     //TODO: Add relational mapping
 
+    public Rating() {
+    }
+
+    public Rating(int rating, String Review, Date dateOfReview) {
+        this();
+        this.rating = rating;
+        this.Review = Review;
+        this.dateOfReview = dateOfReview;
+    }
+
     public Long getRatingID() {
         return ratingID;
     }

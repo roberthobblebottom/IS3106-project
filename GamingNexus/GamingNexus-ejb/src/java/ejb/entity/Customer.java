@@ -30,7 +30,18 @@ public class Customer extends User implements Serializable {
     @NotNull
     @Size(min = 5, max = 100)
     private String securityAnswer;
-  //TODO: Add relational mapping
+    //TODO: Add relational mapping
+
+    public Customer() {
+    }
+
+    public Customer(String currentGamePlaying, Date unbanDate, String securityQuestion, String securityAnswer) {
+        this();
+        this.currentGamePlaying = currentGamePlaying;
+        this.unbanDate = unbanDate;
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
+    }
 
     /**
      * @return the currentGamePlaying

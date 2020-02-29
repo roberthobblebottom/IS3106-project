@@ -26,6 +26,16 @@ public class Game extends Product implements Serializable {
     private List<SerialBlob> gameTrailers;
     //TODO: Add relational mapping
 
+    public Game() {
+    }
+
+    public Game(String parentAdvisory, List<SerialBlob> gamePictures, List<SerialBlob> gameTrailers) {
+        this();
+        this.parentAdvisory = parentAdvisory;
+        this.gamePictures = gamePictures;
+        this.gameTrailers = gameTrailers;
+    }
+
     /**
      * @return the parentAdvisory
      */

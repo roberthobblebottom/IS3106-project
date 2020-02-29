@@ -14,5 +14,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Company extends User implements Serializable {
+
+    public Company() {
+    }
   //TODO: Add relational mapping
+    
 }

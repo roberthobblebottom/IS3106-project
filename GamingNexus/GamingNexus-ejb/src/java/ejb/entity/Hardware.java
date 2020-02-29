@@ -24,6 +24,15 @@ public class Hardware extends Product implements Serializable {
     private String technicalspecification;
     //TODO: Add relational mapping
 
+    public Hardware() {
+    }
+
+    public Hardware(String warrentyDescription, String technicalspecification) {
+        this();
+        this.warrentyDescription = warrentyDescription;
+        this.technicalspecification = technicalspecification;
+    }
+
     /**
      * @return the warrentyDescription
      */

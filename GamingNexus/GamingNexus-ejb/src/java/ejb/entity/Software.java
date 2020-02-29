@@ -17,6 +17,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Software extends Product implements Serializable {
+
+    public Software() {
+    }
     //TODO: Add relational mapping
 
     
