@@ -16,12 +16,13 @@ import javax.sql.rowset.serial.SerialBlob;
  */
 @Entity
 public class Company extends User implements Serializable {
+    //TODO: Add relational mapping
 
+    
     public Company() {
         super();
     }
 
-    //TODO: Add relational mapping
     public Company(int phoneNumber, String address, String email, String country, String username, String password, SerialBlob profilePicture, Date lastOnline) {
         super(phoneNumber, address, email, country, username, password, profilePicture, lastOnline);
     }
