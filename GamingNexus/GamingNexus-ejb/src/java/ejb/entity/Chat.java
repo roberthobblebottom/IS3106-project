@@ -29,6 +29,7 @@ public class Chat implements Serializable {
     private String chatName;
     @NotNull
     private boolean isGroupChat;
+    //TODO: Add relational mapping
 
     public Chat() {
     }

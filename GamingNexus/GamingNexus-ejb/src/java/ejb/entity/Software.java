@@ -17,10 +17,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class Software extends Product implements Serializable {
+    //TODO: Add relational mapping
 
     public Software() {
     }
-    //TODO: Add relational mapping
 
     
 }
