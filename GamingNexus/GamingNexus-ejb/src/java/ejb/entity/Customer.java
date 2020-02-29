@@ -30,6 +30,7 @@ public class Customer extends User implements Serializable {
     @NotNull
     @Size(min = 5, max = 100)
     private String securityAnswer;
+  //TODO: Add relational mapping
 
     /**
      * @return the currentGamePlaying

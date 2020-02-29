@@ -7,12 +7,17 @@ package ejb.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author root
  */
 @Entity
-public class Company extends User implements Serializable {
-  //TODO: Add relational mapping
+public class Software extends Product implements Serializable {
+    //TODO: Add relational mapping
+
+    
 }
