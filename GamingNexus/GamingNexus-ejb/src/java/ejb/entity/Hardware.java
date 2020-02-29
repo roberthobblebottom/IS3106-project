@@ -6,11 +6,12 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
+/**this
  *
  * @author root
  */
@@ -22,16 +23,28 @@ public class Hardware extends Product implements Serializable {
     @Size(min = 0, max = 5000)
     @NotNull
     private String technicalspecification;
+    @Size(min = 0, max = 100)
+    @NotNull
+    private String manufactoringCountry;
+    @Size(min = 0, max = 100)
+    @NotNull
+    private String deliveryFirm;
     //TODO: Add relational mapping
 
     public Hardware() {
+        super();
     }
 
-    public Hardware(String warrentyDescription, String technicalspecification) {
-        this();
+    public Hardware(String warrentyDescription, String technicalspecification, String manufactoringCountry, 
+                    String deliveryFirm, String name, String description, 
+                    String computerRequirements, double price, double averageRating, List<String> tags) {
+        super(name, description, computerRequirements, price, averageRating, tags);
         this.warrentyDescription = warrentyDescription;
         this.technicalspecification = technicalspecification;
+        this.manufactoringCountry = manufactoringCountry;
+        this.deliveryFirm = deliveryFirm;
     }
+
 
     /**
      * @return the warrentyDescription
