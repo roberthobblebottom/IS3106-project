@@ -8,6 +8,7 @@ package ejb.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,15 +34,18 @@ public class Customer extends User implements Serializable {
     //TODO: Add relational mapping
 
     public Customer() {
+        super();
     }
 
-    public Customer(String currentGamePlaying, Date unbanDate, String securityQuestion, String securityAnswer) {
-        this();
+    public Customer(String currentGamePlaying, Date unbanDate, String securityQuestion, String securityAnswer, int phoneNumber, String address, String email, String country, String username, String password, SerialBlob profilePicture, Date lastOnline) {
+        super(phoneNumber, address, email, country, username, password, profilePicture, lastOnline);
         this.currentGamePlaying = currentGamePlaying;
         this.unbanDate = unbanDate;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
     }
+
+    
 
     /**
      * @return the currentGamePlaying
