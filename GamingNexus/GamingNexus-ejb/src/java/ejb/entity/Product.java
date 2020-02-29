@@ -27,7 +27,7 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long productID;
     @NotNull
     @Size(min = 1, max = 100)
     private String name;
@@ -49,29 +49,29 @@ public class Product implements Serializable {
     private List<String> tags;
     //TODO: Add relational mapping
 
-    public Long getId() {
-        return id;
+    public Long getProductID() {
+        return productID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProductID(Long productID) {
+        this.productID = productID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (productID != null ? productID.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the productID fields are not set
         if (!(object instanceof Product)) {
             return false;
         }
         Product other = (Product) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.productID == null && other.productID != null) || (this.productID != null && !this.productID.equals(other.productID))) {
             return false;
         }
         return true;
@@ -79,7 +79,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.entity.Product[ id=" + id + " ]";
+        return "ejb.entity.Product[ id=" + productID + " ]";
     }
 
     /**

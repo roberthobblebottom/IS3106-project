@@ -24,8 +24,8 @@ public class BankAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long BankAccountID;
     @NotNull
     @Size(min = 1, max = 50)
     private String accountNumber;
@@ -40,29 +40,29 @@ public class BankAccount implements Serializable {
     private int backCode;
     //TODO: Add relational mapping
 
-    public Long getId() {
-        return id;
+    public Long getBankAccountID() {
+        return BankAccountID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBankAccountID(Long BankAccountID) {
+        this.BankAccountID = BankAccountID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (BankAccountID != null ? BankAccountID.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the BankAccountID fields are not set
         if (!(object instanceof BankAccount)) {
             return false;
         }
         BankAccount other = (BankAccount) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.BankAccountID == null && other.BankAccountID != null) || (this.BankAccountID != null && !this.BankAccountID.equals(other.BankAccountID))) {
             return false;
         }
         return true;
@@ -70,7 +70,7 @@ public class BankAccount implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.entity.BankAccount[ id=" + id + " ]";
+        return "ejb.entity.BankAccount[ id=" + BankAccountID + " ]";
     }
 
     /**
