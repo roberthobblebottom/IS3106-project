@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
  * @author root
  */
 @Entity
-public class Product implements Serializable {
+public abstract class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,9 +45,6 @@ public class Product implements Serializable {
     @Max(5)
     @NotNull
     private double averageRating;
-    @NotNull
-    private List<String> tags;
-    //TODO: Add relational mapping
 
     public Product() {
     }
@@ -59,7 +56,7 @@ public class Product implements Serializable {
         this.computerRequirements = computerRequirements;
         this.price = price;
         this.averageRating = averageRating;
-        this.tags = tags;
+        
     }
 
     public Long getProductID() {
@@ -163,20 +160,6 @@ public class Product implements Serializable {
      */
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
-    }
-
-    /**
-     * @return the tags
-     */
-    public List<String> getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
 }

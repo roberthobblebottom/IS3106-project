@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -35,7 +34,7 @@ public class Message implements Serializable {
     @NotNull
     @Size(min = 1, max = 2000)
     private String message;
-    private List<SerialBlob> multimedia;
+    private List<String> multimediaURL;
     @NotNull
     @OneToOne
     private User fromUser;
@@ -48,11 +47,11 @@ public class Message implements Serializable {
         
     }
 
-    public Message(Date dateTimeStamp, String message, List<SerialBlob> multimedia, User from) {
+    public Message(Date dateTimeStamp, String message, List<String> multimedia, User from) {
         this();
         this.dateTimeStamp = dateTimeStamp;
         this.message = message;
-        this.multimedia = multimedia;
+        this.multimediaURL = multimedia;
         this.fromUser = from;
     }
 
@@ -118,17 +117,17 @@ public class Message implements Serializable {
     }
 
     /**
-     * @return the multimedia
+     * @return the multimediaURL
      */
-    public List<SerialBlob> getMultimedia() {
-        return multimedia;
+    public List<String> getMultimediaURL() {
+        return multimediaURL;
     }
 
     /**
-     * @param multimedia the multimedia to set
+     * @param multimediaURL the multimediaURL to set
      */
-    public void setMultimedia(List<SerialBlob> multimedia) {
-        this.multimedia = multimedia;
+    public void setMultimediaURL(List<String> multimediaURL) {
+        this.multimediaURL = multimediaURL;
     }
 
     /**

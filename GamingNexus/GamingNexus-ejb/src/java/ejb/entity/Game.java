@@ -8,7 +8,6 @@ package ejb.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,21 +21,21 @@ public class Game extends Product implements Serializable {
     @NotNull
     @Size(min = 1, max = 5)
     private String parentAdvisory;
-    private List<SerialBlob> gamePictures;
-    private List<SerialBlob> gameTrailers;
+    private List<String> gamePicturesURLs;
+    private List<String> gameTrailersURLS;
     //TODO: Add relational mapping
 
     public Game() {
         super();
     }
 
-    public Game(String parentAdvisory, List<SerialBlob> gamePictures,
-            List<SerialBlob> gameTrailers, String name, String description,
+    public Game(String parentAdvisory, List<String> gamePictures,
+            List<String> gameTrailers, String name, String description,
             String computerRequirements, double price, double averageRating, List<String> tags) {
         super(name, description, computerRequirements, price, averageRating, tags);
         this.parentAdvisory = parentAdvisory;
-        this.gamePictures = gamePictures;
-        this.gameTrailers = gameTrailers;
+        this.gamePicturesURLs = gamePictures;
+        this.gameTrailersURLS = gameTrailers;
     }
 
     /**
@@ -54,30 +53,30 @@ public class Game extends Product implements Serializable {
     }
 
     /**
-     * @return the gamePictures
+     * @return the gamePicturesURLs
      */
-    public List<SerialBlob> getGamePictures() {
-        return gamePictures;
+    public List<String> getGamePicturesURLs() {
+        return gamePicturesURLs;
     }
 
     /**
-     * @param gamePictures the gamePictures to set
+     * @param gamePicturesURLs the gamePicturesURLs to set
      */
-    public void setGamePictures(List<SerialBlob> gamePictures) {
-        this.gamePictures = gamePictures;
+    public void setGamePicturesURLs(List<String> gamePicturesURLs) {
+        this.gamePicturesURLs = gamePicturesURLs;
     }
 
     /**
-     * @return the gameTrailers
+     * @return the gameTrailersURLS
      */
-    public List<SerialBlob> getGameTrailers() {
-        return gameTrailers;
+    public List<String> getGameTrailersURLS() {
+        return gameTrailersURLS;
     }
 
     /**
-     * @param gameTrailers the gameTrailers to set
+     * @param gameTrailersURLS the gameTrailersURLS to set
      */
-    public void setGameTrailers(List<SerialBlob> gameTrailers) {
-        this.gameTrailers = gameTrailers;
+    public void setGameTrailersURLS(List<String> gameTrailersURLS) {
+        this.gameTrailersURLS = gameTrailersURLS;
     }
 }
