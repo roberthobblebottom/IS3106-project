@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -40,16 +42,20 @@ public class Rating implements Serializable {
     @NotNull
     @Past
     private Date dateOfReview;
-    //TODO: Add relational mapping
+    @NotNull
+    @OneToOne(optional=false)
+    @JoinColumn(nullable=false)
+    private Product product;
 
     public Rating() {
     }
 
-    public Rating(int rating, String Review, Date dateOfReview) {
+    public Rating(int rating, String Review, Date dateOfReview, Product product) {
         this();
         this.rating = rating;
         this.Review = Review;
         this.dateOfReview = dateOfReview;
+        this.product = product;
     }
 
     public Long getRatingID() {
@@ -125,6 +131,20 @@ public class Rating implements Serializable {
      */
     public void setDateOfReview(Date dateOfReview) {
         this.dateOfReview = dateOfReview;
+    }
+
+    /**
+     * @return the product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

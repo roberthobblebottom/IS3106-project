@@ -6,11 +6,14 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -45,18 +48,31 @@ public abstract class Product implements Serializable {
     @Max(5)
     @NotNull
     private double averageRating;
+    @OneToOne(optional=false)
+    @JoinColumn(nullable=false)
+    private Company company;
+    @NotNull
+    @OneToMany(mappedBy="Product")
+    @JoinColumn(nullable=false)
+    private List<Tag> tags;
+    @OneToMany(mappedBy="Product")
+    private List<Promotion> promotions;
+    @OneToMany(mappedBy="Product")
+    private List<Rating> ratings;
 
     public Product() {
     }
 
-    public Product(String name, String description, String computerRequirements, double price, double averageRating, List<String> tags) {
+    public Product(String name, String description, String computerRequirements, double price, double averageRating, Company company,List<Tag> tags,List<Promotion> promotions) {
         this();
         this.name = name;
         this.description = description;
         this.computerRequirements = computerRequirements;
         this.price = price;
         this.averageRating = averageRating;
-        
+        this.company = company;
+        this.tags = tags;
+        this.promotions = promotions;
     }
 
     public Long getProductID() {
@@ -160,6 +176,67 @@ public abstract class Product implements Serializable {
      */
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
+    }
+
+    /**
+     * @return the company
+     */
+    public Company getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company the company to set
+     */
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    /**
+     * @return the tag
+     */
+    
+
+    /**
+     * @return the tags
+     */
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * @param tags the tags to set
+     */
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * @return the promotions
+     */
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    /**
+     * @param promotions the promotions to set
+     */
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+
+    /**
+     * @return the ratings
+     */
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    /**
+     * @param ratings the ratings to set
+     */
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 
 }

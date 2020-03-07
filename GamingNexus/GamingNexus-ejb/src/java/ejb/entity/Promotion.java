@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -48,12 +50,14 @@ public class Promotion implements Serializable {
     @NotNull
     @Future
     private Date endDate;
-    //TODO: Add relational mapping
+    @OneToMany
+    @JoinColumn(nullable=false)
+    private Product product;
 
     public Promotion() {
     }
 
-    public Promotion(String name, String description, double percentageDiscount, double dollarDiscount, Date startDate, Date endDate) {
+    public Promotion(String name, String description, double percentageDiscount, double dollarDiscount, Date startDate, Date endDate,Product product) {
         this();
         this.name = name;
         this.description = description;
@@ -61,6 +65,7 @@ public class Promotion implements Serializable {
         this.dollarDiscount = dollarDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.product = product;
     }
 
     public Long getPromotionID() {
@@ -178,6 +183,20 @@ public class Promotion implements Serializable {
      */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    /**
+     * @return the product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

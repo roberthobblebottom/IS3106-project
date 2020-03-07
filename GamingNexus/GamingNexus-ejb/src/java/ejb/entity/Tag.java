@@ -6,10 +6,12 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,13 +29,16 @@ public class Tag implements Serializable {
     @NotNull
     @Size(min = 1, max = 50)
     private String tagName;
+    @OneToMany
+    private List<Product> products;
 
     public Tag() {
     }
 
-    public Tag(String tagName) {
+    public Tag(String tagName,List<Product> products) {
         this();
         this.tagName = tagName;
+        this.products = products;
     }
 
     public Long getTagID() {
@@ -81,6 +86,20 @@ public class Tag implements Serializable {
      */
     public void setTagName(String tagName) {
         this.tagName = tagName;
+    }
+
+    /**
+     * @return the products
+     */
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    /**
+     * @param products the products to set
+     */
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }

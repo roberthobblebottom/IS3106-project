@@ -53,7 +53,7 @@ public class User implements Serializable {
     @Past
     @NotNull
     private Date lastOnline;
-    //TODO: relational mapping
+    
 
     public User() {
     }
