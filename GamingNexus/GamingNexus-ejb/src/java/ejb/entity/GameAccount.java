@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -32,15 +34,22 @@ public class GameAccount implements Serializable {
     @NotNull
     @Past
     private Date dateOfCreation;
-    //TODO: Add relational mapping
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    private Customer customer;
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    private Game game;
 
     public GameAccount() {
     }
 
-    public GameAccount(String username, Date dateOfCreation) {
+    public GameAccount(String username, Date dateOfCreation, Customer customer, Game game) {
         this();
         this.username = username;
         this.dateOfCreation = dateOfCreation;
+        this.customer = customer;
+        this.game = game;
     }
 
     public Long getGameAccountID() {
@@ -102,6 +111,34 @@ public class GameAccount implements Serializable {
      */
     public void setDateOfCreation(Date dateOfCreation) {
         this.dateOfCreation = dateOfCreation;
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @return the game
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * @param game the game to set
+     */
+    public void setGame(Game game) {
+        this.game = game;
     }
 
 }

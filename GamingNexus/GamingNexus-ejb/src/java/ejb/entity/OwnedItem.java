@@ -7,10 +7,14 @@ package ejb.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -28,14 +32,21 @@ public class OwnedItem implements Serializable {
     @Past
     @NotNull
     private Date dateOfPurchase;
-    //TODO: Add relational mapping
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    @NotNull
+    private Product product;
+    @OneToMany
+    private List<Customer> customers;
 
     public OwnedItem() {
     }
 
-    public OwnedItem(Date dateOfPurchase) {
+    public OwnedItem(Date dateOfPurchase, Product product, List<Customer> customers) {
         this();
         this.dateOfPurchase = dateOfPurchase;
+        this.product = product;
+        this.customers = customers;
     }
 
     public Long getOwnedItemID() {
@@ -83,6 +94,34 @@ public class OwnedItem implements Serializable {
      */
     public void setDateOfPurchase(Date dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
+    }
+
+    /**
+     * @return the product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    /**
+     * @return the customers
+     */
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * @param customers the customers to set
+     */
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
 }

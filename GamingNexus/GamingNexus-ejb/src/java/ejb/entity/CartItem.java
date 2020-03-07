@@ -6,10 +6,15 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -22,9 +27,21 @@ public class CartItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartItemID;
-    //TODO: Add relational mapping
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    @NotNull
+    private Product product;
+    @OneToMany
+    @JoinColumn(nullable = false)
+    private List<ShoppingCart> shoppingCarts;
 
     public CartItem() {
+    }
+
+    public CartItem(Product product, List<ShoppingCart> shoppingCarts) {
+        this();
+        this.product = product;
+        this.shoppingCarts = shoppingCarts;
     }
 
     public Long getCartItemID() {
@@ -59,5 +76,33 @@ public class CartItem implements Serializable {
     public String toString() {
         return "ejb.entity.CartItem[ id=" + cartItemID + " ]";
     }
-    
+
+    /**
+     * @return the product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    /**
+     * @return the shoppingCarts
+     */
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    /**
+     * @param shoppingCarts the shoppingCarts to set
+     */
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
+    }
+
 }

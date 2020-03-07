@@ -8,6 +8,7 @@ package ejb.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,18 +26,29 @@ public class Game extends Product implements Serializable {
     private List<String> gameTrailersURLS;
     //TODO: Add relational mapping
 
+    @OneToMany(mappedBy = "Game")
+    private List<GameAccount> gameAccounts;
+
+    @OneToMany(mappedBy = "Game")
+    private List<Forum> forums;
+    @OneToMany(mappedBy = "Game")
+    private List<InGameItem> InGameItems;
+
     public Game() {
         super();
     }
 
-    public Game(String parentAdvisory, List<String> gamePictures,
-            List<String> gameTrailers, String name, String description,
-            String computerRequirements, double price, double averageRating, List<String> tags) {
-        super(name, description, computerRequirements, price, averageRating, tags);
+    public Game(String parentAdvisory, List<String> gamePicturesURLs, List<String> gameTrailersURLS, List<GameAccount> gameAccounts, List<Forum> forums, List<InGameItem> InGameItems, String name, String description, String computerRequirements, double price, double averageRating, Company company, List<Tag> tags, List<Promotion> promotions, List<CartItem> cartItems, List<OwnedItem> ownedItems) {
+        super(name, description, computerRequirements, price, averageRating, company, tags, promotions, cartItems, ownedItems);
         this.parentAdvisory = parentAdvisory;
-        this.gamePicturesURLs = gamePictures;
-        this.gameTrailersURLS = gameTrailers;
+        this.gamePicturesURLs = gamePicturesURLs;
+        this.gameTrailersURLS = gameTrailersURLS;
+        this.gameAccounts = gameAccounts;
+        this.forums = forums;
+        this.InGameItems = InGameItems;
     }
+
+    
 
     /**
      * @return the parentAdvisory
@@ -78,5 +90,47 @@ public class Game extends Product implements Serializable {
      */
     public void setGameTrailersURLS(List<String> gameTrailersURLS) {
         this.gameTrailersURLS = gameTrailersURLS;
+    }
+
+    /**
+     * @return the gameAccounts
+     */
+    public List<GameAccount> getGameAccounts() {
+        return gameAccounts;
+    }
+
+    /**
+     * @param gameAccounts the gameAccounts to set
+     */
+    public void setGameAccounts(List<GameAccount> gameAccounts) {
+        this.gameAccounts = gameAccounts;
+    }
+
+    /**
+     * @return the forums
+     */
+    public List<Forum> getForums() {
+        return forums;
+    }
+
+    /**
+     * @param forums the forums to set
+     */
+    public void setForums(List<Forum> forums) {
+        this.forums = forums;
+    }
+
+    /**
+     * @return the InGameItems
+     */
+    public List<InGameItem> getInGameItems() {
+        return InGameItems;
+    }
+
+    /**
+     * @param InGameItems the InGameItems to set
+     */
+    public void setInGameItems(List<InGameItem> InGameItems) {
+        this.InGameItems = InGameItems;
     }
 }

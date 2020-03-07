@@ -5,8 +5,10 @@
  */
 package ejb.entity;
 
+import static ejb.entity.CartItem_.product;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,12 +54,12 @@ public class Promotion implements Serializable {
     private Date endDate;
     @OneToMany
     @JoinColumn(nullable=false)
-    private Product product;
+    private List<Promotion> products;
 
     public Promotion() {
     }
 
-    public Promotion(String name, String description, double percentageDiscount, double dollarDiscount, Date startDate, Date endDate,Product product) {
+    public Promotion(String name, String description, double percentageDiscount, double dollarDiscount, Date startDate, Date endDate,List<Promotion> products) {
         this();
         this.name = name;
         this.description = description;
@@ -65,7 +67,7 @@ public class Promotion implements Serializable {
         this.dollarDiscount = dollarDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.product = product;
+        this.products = products;
     }
 
     public Long getPromotionID() {
@@ -186,17 +188,17 @@ public class Promotion implements Serializable {
     }
 
     /**
-     * @return the product
+     * @return the products
      */
-    public Product getProduct() {
-        return product;
+    public List<Promotion> getProducts() {
+        return products;
     }
 
     /**
-     * @param product the product to set
+     * @param products the products to set
      */
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Promotion> products) {
+        this.products = products;
     }
 
 }

@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -49,7 +48,8 @@ public class User implements Serializable {
     @Size(min = 8, max = 100)
     @NotNull
     private String password;
-    private SerialBlob profilePicture;//https://stackoverflow.com/questions/29208007/what-is-the-data-type-for-images-in-java
+    
+    private String profilePictureURL;//https://stackoverflow.com/questions/29208007/what-is-the-data-type-for-images-in-java
     @Past
     @NotNull
     private Date lastOnline;
@@ -58,7 +58,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int phoneNumber, String address, String email, String country, String username, String password, SerialBlob profilePicture, Date lastOnline) {
+    public User(int phoneNumber, String address, String email, String country, String username, String password, String profilePictureURL, Date lastOnline) {
         this();
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -66,7 +66,7 @@ public class User implements Serializable {
         this.country = country;
         this.username = username;
         this.password = password;
-        this.profilePicture = profilePicture;
+        this.profilePictureURL = profilePictureURL;
         this.lastOnline = lastOnline;
     }
 
@@ -173,20 +173,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    /**
-     * @return the profilePicture
-     */
-    public SerialBlob getProfilePicture() {
-        return profilePicture;
-    }
-
-    /**
-     * @param profilePicture the profilePicture to set
-     */
-    public void setProfilePicture(SerialBlob profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
+ 
     /**
      * @return the lastOnline
      */
@@ -213,6 +200,20 @@ public class User implements Serializable {
      */
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    /**
+     * @return the profilePictureURL
+     */
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    /**
+     * @param profilePictureURL the profilePictureURL to set
+     */
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
     }
 
     /**

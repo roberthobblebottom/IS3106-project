@@ -6,10 +6,13 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,15 +30,25 @@ public class Forum implements Serializable {
     @NotNull
     @Size(min = 1, max = 50)
     private String forumName;
-    //TODO: Add relational mapping
+    @OneToOne
+    private Game game;
+
+    @OneToOne
+    private Forum forum;
+    @OneToMany(mappedBy = "Forum")
+    private List<Message> messages;
 
     public Forum() {
     }
 
-    public Forum(String forumName) {
+    public Forum(String forumName, Game game, Forum forum, List<Message> messages) {
         this();
         this.forumName = forumName;
+        this.game = game;
+        this.forum = forum;
+        this.messages = messages;
     }
+
 
     public Long getForumId() {
         return forumId;
@@ -82,6 +95,48 @@ public class Forum implements Serializable {
      */
     public void setForumName(String forumName) {
         this.forumName = forumName;
+    }
+
+    /**
+     * @return the game
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * @param game the game to set
+     */
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    /**
+     * @return the forum
+     */
+    public Forum getForum() {
+        return forum;
+    }
+
+    /**
+     * @param forum the forum to set
+     */
+    public void setForum(Forum forum) {
+        this.forum = forum;
+    }
+
+    /**
+     * @return the messages
+     */
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    /**
+     * @param messages the messages to set
+     */
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
 }

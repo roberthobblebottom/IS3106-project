@@ -6,10 +6,13 @@
 package ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,7 +32,12 @@ public class Chat implements Serializable {
     private String chatName;
     @NotNull
     private boolean isGroupChat;
-    //TODO: Add relational mapping
+    @ManyToMany
+    private List<Customer> customers;
+    @OneToMany(mappedBy = "Chat")
+    private List<Message> messages;
+    @OneToMany(mappedBy = "Chat")
+    private List<Company> companies;
 
     public Chat() {
     }
@@ -99,6 +107,48 @@ public class Chat implements Serializable {
      */
     public void setIsGroupChat(boolean isGroupChat) {
         this.isGroupChat = isGroupChat;
+    }
+
+    /**
+     * @return the customers
+     */
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * @param customers the customers to set
+     */
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    /**
+     * @return the messages
+     */
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    /**
+     * @param messages the messages to set
+     */
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    /**
+     * @return the companies
+     */
+    public List<Company> getCompanies() {
+        return companies;
+    }
+
+    /**
+     * @param companies the companies to set
+     */
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
     }
 
 }

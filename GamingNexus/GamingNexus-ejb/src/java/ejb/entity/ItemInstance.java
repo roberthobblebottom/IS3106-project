@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 /**
@@ -26,14 +29,22 @@ public class ItemInstance implements Serializable {
     private Long itemInstanceID;
     @Past
     private Date dateOfAquisition;
-    //TODO: Add relational mapping
-
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    @NotNull
+    private GameAccount gameAccount;
+ @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
+    @NotNull
+    private InGameItem inGameItem;
     public ItemInstance() {
     }
 
-    public ItemInstance(Date dateOfAquisition) {
-        this();
+    public ItemInstance(Date dateOfAquisition, GameAccount gameAccount, InGameItem inGameItem) {
+this();
         this.dateOfAquisition = dateOfAquisition;
+        this.gameAccount = gameAccount;
+        this.inGameItem = inGameItem;
     }
 
     public Long getItemInstanceID() {
@@ -82,5 +93,33 @@ public class ItemInstance implements Serializable {
     public void setDateOfAquisition(Date dateOfAquisition) {
         this.dateOfAquisition = dateOfAquisition;
     }
-    
+
+    /**
+     * @return the gameAccount
+     */
+    public GameAccount getGameAccount() {
+        return gameAccount;
+    }
+
+    /**
+     * @param gameAccount the gameAccount to set
+     */
+    public void setGameAccount(GameAccount gameAccount) {
+        this.gameAccount = gameAccount;
+    }
+
+    /**
+     * @return the inGameItem
+     */
+    public InGameItem getInGameItem() {
+        return inGameItem;
+    }
+
+    /**
+     * @param inGameItem the inGameItem to set
+     */
+    public void setInGameItem(InGameItem inGameItem) {
+        this.inGameItem = inGameItem;
+    }
+
 }

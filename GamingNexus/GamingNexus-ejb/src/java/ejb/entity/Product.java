@@ -15,6 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
+    /**
+     * @return the ownedItems
+     */
+   
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -48,22 +52,29 @@ public abstract class Product implements Serializable {
     @Max(5)
     @NotNull
     private double averageRating;
-    @OneToOne(optional=false)
-    @JoinColumn(nullable=false)
+    @NotNull
+    @OneToOne(optional = false)
+    @JoinColumn(nullable = false)
     private Company company;
     @NotNull
-    @OneToMany(mappedBy="Product")
-    @JoinColumn(nullable=false)
+    @OneToMany(mappedBy = "Product")
+    @JoinColumn(nullable = false)
     private List<Tag> tags;
-    @OneToMany(mappedBy="Product")
+    @OneToMany(mappedBy = "Product")
     private List<Promotion> promotions;
-    @OneToMany(mappedBy="Product")
+    @OneToMany(mappedBy = "Product")
     private List<Rating> ratings;
+    @OneToMany(mappedBy = "Product")
+    private List<CartItem> cartItems;
+    @OneToMany(mappedBy = "Product")
+    private List<OwnedItem> ownedItems;
 
     public Product() {
     }
 
-    public Product(String name, String description, String computerRequirements, double price, double averageRating, Company company,List<Tag> tags,List<Promotion> promotions) {
+    public Product(String name, String description, String computerRequirements,
+            double price, double averageRating, Company company, List<Tag> tags, List<Promotion> promotions,
+            List<CartItem> cartItems, List<OwnedItem> ownedItems) {
         this();
         this.name = name;
         this.description = description;
@@ -73,6 +84,8 @@ public abstract class Product implements Serializable {
         this.company = company;
         this.tags = tags;
         this.promotions = promotions;
+        this.cartItems = cartItems;
+        this.ownedItems = ownedItems;
     }
 
     public Long getProductID() {
@@ -195,8 +208,6 @@ public abstract class Product implements Serializable {
     /**
      * @return the tag
      */
-    
-
     /**
      * @return the tags
      */
@@ -237,6 +248,34 @@ public abstract class Product implements Serializable {
      */
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    /**
+     * @return the cartItems
+     */
+    public List<CartItem> getCartItem() {
+        return cartItems;
+    }
+
+    /**
+     * @param cartItems the cartItems to set
+     */
+    public void setCartItem(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    /**
+     * @return the ownedItems
+     */
+    public List<OwnedItem> getOwnedItems() {
+        return ownedItems;
+    }
+
+    /**
+     * @param ownedItems the ownedItems to set
+     */
+    public void setOwnedItems(List<OwnedItem> ownedItems) {
+        this.ownedItems = ownedItems;
     }
 
 }

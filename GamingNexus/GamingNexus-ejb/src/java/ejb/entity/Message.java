@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import util.exception.MessageTypeException;
 
 /**
  *
@@ -40,20 +41,35 @@ public class Message implements Serializable {
     private User fromUser;
     @NotNull
     private boolean isNewPost = false;
-    //TODO: Add relational mapping
-    //TODO: Make sure that the Message entity is NOT linked to both Chat entity and Forum Entity
 
+    @OneToOne
+    private Forum forum;
+
+    @OneToOne
+    private Chat chat;
+
+    //TODO: Make sure that the Message entity is NOT linked to both Chat entity and Forum Entity
     public Message() {
-        
+
     }
 
-    public Message(Date dateTimeStamp, String message, List<String> multimedia, User from) {
+    public Message(Date dateTimeStamp, String message, List<String> multimediaURL, User fromUser, Forum forum) {
         this();
         this.dateTimeStamp = dateTimeStamp;
         this.message = message;
-        this.multimediaURL = multimedia;
-        this.fromUser = from;
-    }
+        this.multimediaURL = multimediaURL;
+        this.fromUser = fromUser;
+        this.forum = forum;
+    }//constructor for forum message
+
+    public Message(Date dateTimeStamp, String message, List<String> multimediaURL, User fromUser, Chat chat) {
+        this();
+        this.dateTimeStamp = dateTimeStamp;
+        this.message = message;
+        this.multimediaURL = multimediaURL;
+        this.fromUser = fromUser;
+        this.chat = chat;
+    }//constructor for chat message
 
     public Long getMessageID() {
         return messageID;
@@ -156,6 +172,44 @@ public class Message implements Serializable {
      */
     public void setIsNewPost(boolean isNewPost) {
         this.isNewPost = isNewPost;
+    }
+
+    /**
+     * @return the forum
+     */
+    public Forum getForum() {
+        return forum;
+    }
+
+    /**
+     * @param forum the forum to set
+     * @throws util.exception.MessageTypeException
+     */
+    public void setForum(Forum forum) throws MessageTypeException{
+        if (this.chat == null) {
+            this.forum = forum;
+        } else {
+            throw new MessageTypeException("This is a forum message already");
+        }
+    }
+
+    /**
+     * @return the chat
+     */
+    public Chat getChat() {
+        return chat;
+    }
+
+    /**
+     * @param chat the chat to set
+     * @throws util.exception.MessageTypeException
+     */
+    public void setChat(Chat chat) throws MessageTypeException {
+        if (this.forum == null) {
+            this.chat = chat;
+        } else {
+            throw new MessageTypeException("This is a forum message already");
+        }
     }
 
 }

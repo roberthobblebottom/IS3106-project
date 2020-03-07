@@ -46,16 +46,21 @@ public class Rating implements Serializable {
     @OneToOne(optional=false)
     @JoinColumn(nullable=false)
     private Product product;
+    @OneToOne(optional=false)
+    @JoinColumn(nullable=false)
+    @NotNull
+    private Customer customer;
 
     public Rating() {
     }
 
-    public Rating(int rating, String Review, Date dateOfReview, Product product) {
+    public Rating(int rating, String Review, Date dateOfReview, Product product,Customer customer) {
         this();
         this.rating = rating;
         this.Review = Review;
         this.dateOfReview = dateOfReview;
         this.product = product;
+        this.customer = customer;
     }
 
     public Long getRatingID() {
@@ -145,6 +150,20 @@ public class Rating implements Serializable {
      */
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 }

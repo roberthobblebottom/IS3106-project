@@ -7,10 +7,13 @@ package ejb.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -34,16 +37,24 @@ public class Deliverables implements Serializable {
     private int DeliveryManPhoneNumber;
     @NotNull
     private boolean hasArrived = false;
-    //TODO: Add relational mapping
+    @OneToMany
+    @JoinColumn(nullable = false)
+    @NotNull
+    private List<Hardware> hardwares;
+    @OneToMany
+    List<Customer> customers;
 
     public Deliverables() {
     }
 
-    public Deliverables(Date expectedDateOfArrival, int DeliveryManPhoneNumber) {
-        this();
+    public Deliverables(Date expectedDateOfArrival, int DeliveryManPhoneNumber, List<Hardware> hardwares, List<Customer> customers) {
         this.expectedDateOfArrival = expectedDateOfArrival;
         this.DeliveryManPhoneNumber = DeliveryManPhoneNumber;
+        this.hardwares = hardwares;
+        this.customers = customers;
     }
+
+    
 
     public Long getDeliverablesID() {
         return deliverablesID;
@@ -118,6 +129,20 @@ public class Deliverables implements Serializable {
      */
     public void setHasArrived(boolean hasArrived) {
         this.hasArrived = hasArrived;
+    }
+
+    /**
+     * @return the hardwares
+     */
+    public List<Hardware> getHardwares() {
+        return hardwares;
+    }
+
+    /**
+     * @param hardwares the hardwares to set
+     */
+    public void setHardwares(List<Hardware> hardwares) {
+        this.hardwares = hardwares;
     }
 
 }

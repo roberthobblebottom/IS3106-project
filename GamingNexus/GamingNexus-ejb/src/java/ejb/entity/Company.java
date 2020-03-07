@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.sql.rowset.serial.SerialBlob;
 
 /**
  *
@@ -28,12 +27,15 @@ public class Company extends User implements Serializable {
         super();
     }
 
-    public Company(List<Product> products, int phoneNumber, String address, String email, String country, String username, String password, SerialBlob profilePicture, Date lastOnline,List<Chat> chats) {
-        super(phoneNumber, address, email, country, username, password, profilePicture, lastOnline);
+    public Company(List<Product> products, List<Chat> chats, int phoneNumber, String address,
+            String email, String country, String username, String password, String profilePictureURL, 
+            Date lastOnline) {
+        super(phoneNumber, address, email, country, username, password, profilePictureURL, lastOnline);
         this.products = products;
-        this.chats=chats;
+        this.chats = chats;
     }
 
+ 
     /**
      * @return the products
      */
