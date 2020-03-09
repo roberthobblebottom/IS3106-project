@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.CartItem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +20,28 @@ public class CartItemSessionBean implements CartItemSessionBeanLocal {
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
+    @Override
+    public long createNewCartItem(CartItem cartItem) {
+        em.persist(cartItem);
+        em.flush();
+        return cartItem.getCartItemID();
+    }
+    
+     @Override
+    public CartItem retrieveCartItembyID(Long cartItemID) {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+        return null;
+    }
+
+
+    @Override
+    
+    
+    
+    
+    public void updateCartItem(CartItem cartItem, Long cartItemID) {
+        CartItem cartItemToUpdate = retrieveCartItemByID(cartItemID);
+    }
+
+   
 }

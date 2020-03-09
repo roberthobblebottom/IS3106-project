@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.CartItem;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface CartItemSessionBeanLocal {
+
+
+    public long createNewCartItem(CartItem cartItem);
+
+    void updateCartItem(CartItem cartItem, Long cartItemID);
+
+
+    public CartItem retrieveCartItembyID(Long cartItemID);
     
 }
