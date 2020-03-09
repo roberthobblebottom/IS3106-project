@@ -24,7 +24,6 @@ public class Game extends Product implements Serializable {
     private String parentAdvisory;
     private List<String> gamePicturesURLs;
     private List<String> gameTrailersURLS;
-    //TODO: Add relational mapping
 
     @OneToMany(mappedBy = "Game")
     private List<GameAccount> gameAccounts;
