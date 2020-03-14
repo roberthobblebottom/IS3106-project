@@ -5,6 +5,8 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Software;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface SoftwareSessionBeanLocal {
+
+    public long createSoftware(Software software);
+
+    public Software retrieveSoftwareByID(long softwareID);
+
+    public List<Software> retrieveAllSoftwares();
+
+    public void deleteSoftware(Software software);
+
+    public void updateSoftware(Software software);
     
 }

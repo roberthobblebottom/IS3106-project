@@ -5,6 +5,8 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Game;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface GameSessionBeanLocal {
+
+    public long createNewGame(Game game);
+
+    public List<Game> retrieveAllGames();
+
+    public Game retrieveGameById(long gameID);
+
+    public void UpdateGame(Game game);
+
+    public void deletedGame(Game game);
     
 }

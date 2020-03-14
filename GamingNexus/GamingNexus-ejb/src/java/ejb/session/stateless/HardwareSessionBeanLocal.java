@@ -5,6 +5,8 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Hardware;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface HardwareSessionBeanLocal {
+
+    public long createNewHardware(Hardware hardware);
+
+    public Hardware retrieveHardwareByID(long hardwareID);
+
+    public List<Hardware> retrieveAllHardware();
+
+    public void updateHardware(Hardware hardware);
+
+    public void deleteHardware(Hardware hardware);
     
 }
