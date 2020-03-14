@@ -5,9 +5,7 @@
  */
 package ejb.session.stateless;
 
-import ejb.entity.Customer;
 import ejb.entity.Deliverables;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,12 +27,26 @@ public class DeliverablesSessionBean implements DeliverablesSessionBeanLocal {
         return deliverables.getDeliverablesID();
     }
 
-    @Override 
-    public List<Deliverables> retrieveAllDeliverablesByCustomer(Customer customer){
-    Query query = em.createQuery("SELECT d FROM Deliverables d WHERE d.customers")
+    @Override
+    public Deliverables retrievedByDeliverablesID(long deliverablesID) {
+        Deliverables deliverables = em.find(Deliverables.class, deliverablesID);
+        this.lazyLoadDeliverables(deliverables);
+        return deliverables;
     }
-    
-    
-    
-    
+
+    public void updateDeliverables(Deliverables deliverables) {
+        Deliverables deliverablesToBeUpdated = this.retrievedByDeliverablesID(deliverables.getDeliverablesID());
+        deliverablesToBeUpdated.setCustomers(deliverables.getCustomers());
+        deliverablesToBeUpdated.setDeliveryManPhoneNumber(deliverables.getDeliveryManPhoneNumber());
+        deliverablesToBeUpdated.setExpectedDateOfArrival(deliverables.getExpectedDateOfArrival());
+        deliverablesToBeUpdated.setHardwares(deliverables.getHardwares());
+        deliverablesToBeUpdated.setHasArrived(deliverables.isHasArrived());
+    }
+
+    private void lazyLoadDeliverables(Deliverables deliverables) {
+        deliverables.getHardwares().size();
+        deliverables.getCustomers().size();
+
+    }
+
 }

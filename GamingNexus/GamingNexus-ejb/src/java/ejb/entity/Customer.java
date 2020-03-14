@@ -47,17 +47,15 @@ public class Customer extends User implements Serializable {
     private List<GameAccount> gameAccounts;
     @OneToMany(mappedBy = "Customer")
     private List<Chat> chats;
+    @OneToMany(mappedBy = "Customer")
+    private List<Deliverables> listOfDeliverables;
 
     public Customer() {
         super();
     }
 
-    public Customer(String currentGamePlaying, Date unbanDate, String securityQuestion, String securityAnswer, int phoneNumber,
-            String address, String email, String country, String username, String password,
-            String profilePictureUrl, Date lastOnline, List<OwnedItem> ownedItems,
-            ShoppingCart shoppingCart, List<Rating> ratings, List<Customer> customers,
-            List<GameAccount> gameAccounts, List<Chat> chats) {
-        super(phoneNumber, address, email, country, username, password, profilePictureUrl, lastOnline);
+    public Customer(String currentGamePlaying, Date unbanDate, String securityQuestion, String securityAnswer, List<OwnedItem> ownedItems, ShoppingCart shoppingCart, List<Rating> ratings, List<Customer> customers, List<GameAccount> gameAccounts, List<Chat> chats, List<Deliverables> listOfDeliverables, int phoneNumber, String address, String email, String country, String username, String password, String profilePictureURL, Date lastOnline) {
+        super(phoneNumber, address, email, country, username, password, profilePictureURL, lastOnline);
         this.currentGamePlaying = currentGamePlaying;
         this.unbanDate = unbanDate;
         this.securityQuestion = securityQuestion;
@@ -68,8 +66,10 @@ public class Customer extends User implements Serializable {
         this.customers = customers;
         this.gameAccounts = gameAccounts;
         this.chats = chats;
+        this.listOfDeliverables = listOfDeliverables;
     }
 
+ 
     /**
      * @return the currentGamePlaying
      */
@@ -222,5 +222,19 @@ public class Customer extends User implements Serializable {
      */
     public void setChats(List<Chat> chats) {
         this.chats = chats;
+    }
+
+    /**
+     * @return the listOfDeliverables
+     */
+    public List<Deliverables> getListOfDeliverables() {
+        return listOfDeliverables;
+    }
+
+    /**
+     * @param listOfDeliverables the listOfDeliverables to set
+     */
+    public void setListOfDeliverables(List<Deliverables> listOfDeliverables) {
+        this.listOfDeliverables = listOfDeliverables;
     }
 }

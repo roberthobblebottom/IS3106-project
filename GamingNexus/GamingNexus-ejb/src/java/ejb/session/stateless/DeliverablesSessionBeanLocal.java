@@ -16,5 +16,7 @@ import javax.ejb.Local;
 public interface DeliverablesSessionBeanLocal {
 
     public long createNewDeliverables(Deliverables deliverables);
+
+    public Deliverables retrievedByDeliverablesID(long deliverablesID);
     
 }

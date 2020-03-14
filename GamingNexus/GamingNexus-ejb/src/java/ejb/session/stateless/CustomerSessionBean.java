@@ -87,6 +87,7 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         customer.getGameAccounts().size();
         customer.getOwnedItems().size();
         customer.getRatings().size();
+        customer.getListOfDeliverables().size();
 
     }
 }

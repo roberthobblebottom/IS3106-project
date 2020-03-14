@@ -42,7 +42,7 @@ public class Deliverables implements Serializable {
     @NotNull
     private List<Hardware> hardwares;
     @OneToMany
-    List<Customer> customers;
+    private List<Customer> customers;
 
     public Deliverables() {
     }
@@ -143,6 +143,20 @@ public class Deliverables implements Serializable {
      */
     public void setHardwares(List<Hardware> hardwares) {
         this.hardwares = hardwares;
+    }
+
+    /**
+     * @return the customers
+     */
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * @param customers the customers to set
+     */
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
 }
