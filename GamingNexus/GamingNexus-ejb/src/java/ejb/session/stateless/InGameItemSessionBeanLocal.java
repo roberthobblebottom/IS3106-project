@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.InGameItem;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface InGameItemSessionBeanLocal {
+
+    public void deleteInGameItem(InGameItem inGameItem);
+
+    public void updateInGameItem(InGameItem inGameItem);
+
+    public InGameItem retrieveInGameItemByID(long inGameItemID);
+
+    public long createNewInGameItem(InGameItem inGameItem);
     
 }

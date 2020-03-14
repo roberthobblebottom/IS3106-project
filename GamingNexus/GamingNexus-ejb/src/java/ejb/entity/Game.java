@@ -27,7 +27,6 @@ public class Game extends Product implements Serializable {
 
     @OneToMany(mappedBy = "Game")
     private List<GameAccount> gameAccounts;
-
     @OneToMany(mappedBy = "Game")
     private List<Forum> forums;
     @OneToMany(mappedBy = "Game")

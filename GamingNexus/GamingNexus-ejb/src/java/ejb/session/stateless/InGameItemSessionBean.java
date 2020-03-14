@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.InGameItem;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +20,41 @@ public class InGameItemSessionBean implements InGameItemSessionBeanLocal {
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
+    @Override
+    public long createNewInGameItem(InGameItem inGameItem) {
+        em.persist(inGameItem);
+        em.flush();
+        return inGameItem.getInGameItemID();
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public InGameItem retrieveInGameItemByID(long inGameItemID) {
+        InGameItem inGameItem = em.find(InGameItem.class, inGameItemID);
+        this.lazyLoadInGameItem(inGameItem);
+        return inGameItem;
+    }
+
+    @Override
+    public void updateInGameItem(InGameItem inGameItem) {
+        InGameItem itemToBeUpdated = em.find(InGameItem.class, inGameItem.getInGameItemID());
+        itemToBeUpdated.setDescription(inGameItem.getDescription());
+        itemToBeUpdated.setGame(inGameItem.getGame());
+        itemToBeUpdated.setDescription(inGameItem.getDescription());
+        itemToBeUpdated.setItemInstances(inGameItem.getItemInstances());
+        itemToBeUpdated.setName(inGameItem.getName());
+        itemToBeUpdated.setStatistic(inGameItem.getStatistic());
+        itemToBeUpdated.setType(inGameItem.getType());
+
+    }
+
+    @Override
+    public void deleteInGameItem(InGameItem inGameItem) {
+        InGameItem inGameItemToBeDeleted = em.find(InGameItem.class, inGameItem.getInGameItemID());
+        em.remove(inGameItemToBeDeleted);
+    }
+
+    public void lazyLoadInGameItem(InGameItem inGameItem) {
+        inGameItem.getItemInstances().size();
+    }
+
 }

@@ -79,6 +79,5 @@ public class HardwareSessionBean implements HardwareSessionBeanLocal {
         hardware.getRatings().size();
         hardware.getTags().size();
         hardware.getOwnedItems().size();
-
     }
 }
