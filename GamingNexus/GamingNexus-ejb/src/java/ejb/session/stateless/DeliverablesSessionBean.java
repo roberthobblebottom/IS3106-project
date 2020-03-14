@@ -5,6 +5,9 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Customer;
+import ejb.entity.Deliverables;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +22,19 @@ public class DeliverablesSessionBean implements DeliverablesSessionBeanLocal {
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
+    @Override
+    public long createNewDeliverables(Deliverables deliverables) {
+        em.persist(deliverables);
+        em.flush();
+        return deliverables.getDeliverablesID();
+    }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override 
+    public List<Deliverables> retrieveAllDeliverablesByCustomer(Customer customer){
+    Query query = em.createQuery("SELECT d FROM Deliverables d WHERE d.customers")
+    }
+    
+    
+    
+    
 }

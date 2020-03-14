@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Deliverables;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface DeliverablesSessionBeanLocal {
+
+    public long createNewDeliverables(Deliverables deliverables);
     
 }

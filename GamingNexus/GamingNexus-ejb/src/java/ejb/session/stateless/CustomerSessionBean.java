@@ -18,7 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class CustomerSessionBean implements CustomerSessionBeanLocal {
-    
+
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
@@ -26,26 +26,31 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
     // "Insert Code > Add Business Method")
     public CustomerSessionBean() {
     }
-    
+
     @Override
     public Long createNewCustomer(Customer customer) {
         em.persist(customer);
         em.flush();
         return customer.getUserID();
     }
-    
+
     @Override
     public List<Customer> retrieveAllCustomers() {
         Query query = em.createQuery("SELECT c FROM Customer c");
-        return query.getResultList();
+        List<Customer> customers = query.getResultList();
+        customers.forEach(customer -> {
+            this.lazyLoadCustomer(customer);
+        });
+        return customers;
     }
-    
+
     @Override
     public Customer retrieveCustomerByID(long userID) {
         Customer customerToBeRetrieved = em.find(Customer.class, userID);
+        this.lazyLoadCustomer(customerToBeRetrieved);
         return customerToBeRetrieved;
     }
-    
+
     @Override
     public void updateCustomer(Customer customer) {
         Customer customerToBeUpdated = this.retrieveCustomerByID(customer.getUserID());
@@ -69,11 +74,19 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         customerToBeUpdated.setUnbanDate(customer.getUnbanDate());
         customerToBeUpdated.setUsername(customer.getUsername());
     }
-    
+
     @Override
     public void deleteCustomer(long customerID) {
         Customer customerToBeDeleted = this.retrieveCustomerByID(customerID);
         em.remove(customerToBeDeleted);
     }
-    
+
+    private void lazyLoadCustomer(Customer customer) {
+        customer.getChats().size();
+        customer.getCustomers().size();
+        customer.getGameAccounts().size();
+        customer.getOwnedItems().size();
+        customer.getRatings().size();
+
+    }
 }

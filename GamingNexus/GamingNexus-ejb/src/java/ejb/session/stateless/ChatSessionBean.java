@@ -30,7 +30,11 @@ public class ChatSessionBean implements ChatSessionBeanLocal {
 
     @Override
     public Chat retrieveChatByID(long chatID) {
-        return em.find(Chat.class, chatID);
+        Chat chatToBeRetrived = em.find(Chat.class, chatID);
+        chatToBeRetrived.getCompanies().size();
+        chatToBeRetrived.getCustomers().size();
+        chatToBeRetrived.getMessages().size();
+        return chatToBeRetrived;
     }
 
     @Override

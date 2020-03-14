@@ -31,12 +31,20 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
 
     @Override
     public Company retrieveCompany(Company company) {
-        return em.find(Company.class, company.getUserID());
+        Company retrievedCompany = em.find(Company.class, company.getUserID());
+this.lazyLoadCompany(company);
+        return retrievedCompany;
+
     }
 
     public List<Company> retrieveCompanies() {
         Query query = em.createQuery("SELECT c FROM Company c");
-        return query.getResultList();
+        List<Company> companies= query.getResultList();
+        companies.forEach((company) -> {
+            this.lazyLoadCompany(company);
+        });
+        return companies;
+    
     }
 
     public void updateCompany(Company company) {
@@ -57,5 +65,10 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
     public void deleteCompany(Company company) {
         Company companyToBeDeleted = this.retrieveCompany(company);
         em.remove(companyToBeDeleted);
+    }
+
+    private void lazyLoadCompany(Company company) {
+        company.getChats().size();
+        company.getProducts();
     }
 }

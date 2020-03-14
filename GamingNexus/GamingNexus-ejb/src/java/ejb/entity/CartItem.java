@@ -6,13 +6,11 @@
 package ejb.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -31,17 +29,17 @@ public class CartItem implements Serializable {
     @JoinColumn(nullable = false)
     @NotNull
     private Product product;
-    @OneToMany
+    @OneToOne
     @JoinColumn(nullable = false)
-    private List<ShoppingCart> shoppingCarts;
+    private ShoppingCart shoppingCart;
 
     public CartItem() {
     }
 
-    public CartItem(Product product, List<ShoppingCart> shoppingCarts) {
+    public CartItem(Product product, ShoppingCart shoppingCart) {
         this();
         this.product = product;
-        this.shoppingCarts = shoppingCarts;
+        this.shoppingCart = shoppingCart;
     }
 
     public Long getCartItemID() {
@@ -92,17 +90,17 @@ public class CartItem implements Serializable {
     }
 
     /**
-     * @return the shoppingCarts
+     * @return the shoppingCart
      */
-    public List<ShoppingCart> getShoppingCarts() {
-        return shoppingCarts;
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
     }
 
     /**
-     * @param shoppingCarts the shoppingCarts to set
+     * @param shoppingCart the shoppingCart to set
      */
-    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-        this.shoppingCarts = shoppingCarts;
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
 }
