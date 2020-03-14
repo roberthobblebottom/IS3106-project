@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,31 +18,62 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class CustomerSessionBean implements CustomerSessionBeanLocal {
-
+    
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
-
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
     public CustomerSessionBean() {
     }
-
+    
     @Override
     public Long createNewCustomer(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public List<Customer> retrieveAllCustomers() {
-        return null;
-    }
-
-    @Override
-    public Customer updateCustomer(Customer customer) {
-        return null;
+        em.persist(customer);
+        em.flush();
+        return customer.getUserID();
     }
     
-
+    @Override
+    public List<Customer> retrieveAllCustomers() {
+        Query query = em.createQuery("SELECT c FROM Customer c");
+        return query.getResultList();
+    }
+    
+    @Override
+    public Customer retrieveCustomerByID(long userID) {
+        Customer customerToBeRetrieved = em.find(Customer.class, userID);
+        return customerToBeRetrieved;
+    }
+    
+    @Override
+    public void updateCustomer(Customer customer) {
+        Customer customerToBeUpdated = this.retrieveCustomerByID(customer.getUserID());
+        customerToBeUpdated.setAddress(customer.getAddress());
+        customerToBeUpdated.setChats(customer.getChats());
+        customerToBeUpdated.setCountry(customer.getCountry());
+        customerToBeUpdated.setCurrentGamePlaying(customer.getCurrentGamePlaying());
+        customerToBeUpdated.setCustomers(customer.getCustomers());
+        customerToBeUpdated.setEmail(customer.getEmail());
+        customerToBeUpdated.setGameAccounts(customer.getGameAccounts());
+        customerToBeUpdated.setIsBanned(customer.isIsBanned());
+        customerToBeUpdated.setLastOnline(customer.getLastOnline());
+        customerToBeUpdated.setOwnedItems(customer.getOwnedItems());
+        customerToBeUpdated.setPassword(customer.getPassword());
+        customerToBeUpdated.setPhoneNumber(customer.getPhoneNumber());
+        customerToBeUpdated.setProfilePictureURL(customer.getProfilePictureURL());
+        customerToBeUpdated.setRatings(customer.getRatings());
+        customerToBeUpdated.setSecurityAnswer(customer.getSecurityQuestion());
+        customerToBeUpdated.setSecurityQuestion(customer.getSecurityQuestion());
+        customerToBeUpdated.setShoppingCart(customer.getShoppingCart());
+        customerToBeUpdated.setUnbanDate(customer.getUnbanDate());
+        customerToBeUpdated.setUsername(customer.getUsername());
+    }
+    
+    @Override
+    public void deleteCustomer(long customerID) {
+        Customer customerToBeDeleted = this.retrieveCustomerByID(customerID);
+        em.remove(customerToBeDeleted);
+    }
+    
 }

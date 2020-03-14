@@ -6,7 +6,9 @@
 package ejb.session.stateless;
 
 import ejb.entity.CartItem;
+import java.util.List;
 import javax.ejb.Local;
+import util.exception.EntityInstanceNotFound;
 
 /**
  *
@@ -18,9 +20,13 @@ public interface CartItemSessionBeanLocal {
 
     public long createNewCartItem(CartItem cartItem);
 
-    void updateCartItem(CartItem cartItem, Long cartItemID);
+//    void updateCartItem(CartItem cartItem, Long cartItemID)throws  EntityInstanceNotFound;
 
 
-    public CartItem retrieveCartItembyID(Long cartItemID);
+    public CartItem retrieveCartItembyID(Long cartItemID)throws  EntityInstanceNotFound;
+
+    public List<CartItem> retrieveAllCartItems() throws EntityInstanceNotFound;
+
+    public void deleteCartItem(Long cartItemID) throws EntityInstanceNotFound;
     
 }

@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Chat;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +20,33 @@ public class ChatSessionBean implements ChatSessionBeanLocal {
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
+    @Override
+    public long createNewChat(Chat chat) {
+        em.persist(chat);
+        em.flush();
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+        return chat.getChatID();
+    }
+
+    @Override
+    public Chat retrieveChatByID(long chatID) {
+        return em.find(Chat.class, chatID);
+    }
+
+    @Override
+    public void updateChat(Chat chat) {
+        Chat chatToBeUpdated = this.retrieveChatByID(chat.getChatID());
+        chatToBeUpdated.setChatName(chat.getChatName());
+        chatToBeUpdated.setIsGroupChat(chat.isIsGroupChat());
+        chatToBeUpdated.setCompanies(chat.getCompanies());
+        chatToBeUpdated.setCustomers(chat.getCustomers());
+        chatToBeUpdated.setMessages(chat.getMessages());
+    }
+
+    @Override
+    public void deleteChat(long chatID) {
+        Chat chatToBeDeleted = this.retrieveChatByID(chatID);
+        em.remove(chatToBeDeleted);
+    }
+
 }

@@ -20,6 +20,10 @@ public interface CustomerSessionBeanLocal {
 
     public Long createNewCustomer(Customer customer);
 
-    Customer updateCustomer(Customer customer);
+    public void updateCustomer(Customer customer);
+
+    public Customer retrieveCustomerByID(long customerID);
+
+    public void deleteCustomer(long customerID);
     
 }

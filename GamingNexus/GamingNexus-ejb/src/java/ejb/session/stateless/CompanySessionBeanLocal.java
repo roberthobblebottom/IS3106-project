@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Company;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface CompanySessionBeanLocal {
+
+    public long createNewCompany(Company company);
+
+    public Company retrieveCompany(Company company);
     
 }

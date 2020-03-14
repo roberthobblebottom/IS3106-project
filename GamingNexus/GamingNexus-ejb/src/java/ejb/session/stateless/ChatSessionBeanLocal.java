@@ -5,6 +5,7 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Chat;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface ChatSessionBeanLocal {
+
+    public long createNewChat(Chat chat);
+
+    public Chat retrieveChatByID(long chatID);
+
+    public void deleteChat(long chatID);
+
+    public void updateChat(Chat chat);
     
 }
