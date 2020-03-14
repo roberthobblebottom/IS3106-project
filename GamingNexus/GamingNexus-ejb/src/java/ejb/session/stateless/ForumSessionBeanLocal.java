@@ -5,6 +5,9 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Forum;
+import ejb.entity.Game;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,16 @@ import javax.ejb.Local;
  */
 @Local
 public interface ForumSessionBeanLocal {
+
+    public long createForum(Forum forum);
+
+    public List<Forum> retrieveForumsByGame(Game game);
+
+    public Forum retrieveForumByID(long forumID);
+
+   
+    public void updateForum(Forum forum);
+
+    public void deleteForum(Forum forum);
     
 }

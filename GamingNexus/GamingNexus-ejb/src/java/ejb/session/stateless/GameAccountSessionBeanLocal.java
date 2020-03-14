@@ -5,6 +5,9 @@
  */
 package ejb.session.stateless;
 
+import ejb.entity.Game;
+import ejb.entity.GameAccount;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,13 @@ import javax.ejb.Local;
  */
 @Local
 public interface GameAccountSessionBeanLocal {
+
+    public List<GameAccount> retrieveAllGameAccountsByGame(Game game);
+
+    public GameAccount retrieveGameAccountByID(long gameAccountID);
+
+    public void updateGameAccount(GameAccount gameAccount);
+
+    public void deletegameAccount(GameAccount gameAccount);
     
 }

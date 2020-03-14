@@ -22,8 +22,6 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
     @PersistenceContext(unitName = "GamingNexus-ejbPU")
     private EntityManager em;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     public CustomerSessionBean() {
     }
 
